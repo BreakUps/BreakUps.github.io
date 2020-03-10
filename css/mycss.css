@@ -1,0 +1,43 @@
+body{
+	padding:10px 20px;
+	
+}
+#all{
+	border: 1px solid black;
+	padding:10px 20px;
+}
+.photo{
+	padding:5%;
+}
+#left{
+	padding:0;
+	border:1px solid black;
+	font-size:150%;
+	text-shadow: 5px 5px 5px #FF0000;
+	background-color:rgba(0,256,256,0.5);
+}
+	
+#left>img{
+	margin-right:5%;
+	width:50%;
+}
+#middle{
+	padding:10px;
+	font-size:2em;
+	text-align:center;
+}
+#right{
+	border:1px solid black;
+}
+.right{
+	text-align:center;
+	font-size:150%;
+	font-family:TimesNR;
+	font-style:oblique;
+	padding:0px;
+}
+#right>img{
+	margin-bottom:10px;
+	width:100%;
+	transition:all 0.3s;
+}

@@ -1,0 +1,9 @@
+$('#right>img').hover(function(){
+	$(this).css('transform','scale(1.2,1.2)');
+	$(this).css('marginBottom','30px');
+	$(this).css('marginTop','20px');
+	},function(){
+	$(this).css('transform','scale(1,1)');
+	$(this).css('marginBottom','10px');
+	$(this).css('marginTop','0px');
+	});
