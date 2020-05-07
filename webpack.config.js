@@ -8,7 +8,8 @@ const config = {
     filename: 'bundle.js'
   },
   optimization: {
-    minimize: isProduction
+    minimize: isProduction,
+    usedExports: true
   },
   mode: NODE_ENV,
   watch: !isProduction,
@@ -23,7 +24,7 @@ const config = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-react', '@babel/preset-env'],
+            presets: ['@babel/preset-react', ['@babel/preset-env', { modules: false }]],
             plugins: [require('@babel/plugin-proposal-class-properties')]
           },
         }
