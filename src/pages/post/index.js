@@ -30,13 +30,15 @@ class Post extends Component {
 
     render() {
         let { content, date } = this.state;
-        return  <div className={styles.container}>
+        return  <>
                     <Header></Header>
-                    <aside className={styles['article-info-box']}>
-                        wrote at <time className={styles.date}>{date && dateFormat(new Date(date))}</time>
-                    </aside>
-                    <Article content={content}></Article>
-                </div>
+                    <div className={styles.container}>
+                        <aside className={styles['article-info-box']}>
+                            wrote at <time className={styles.date}>{date && dateFormat(new Date(date))}</time>
+                        </aside>
+                        <Article content={content}></Article>
+                    </div>
+                </>
     }
 }
 
