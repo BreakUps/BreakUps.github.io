@@ -1,0 +1,16 @@
+.article {
+	font-family: KaiTi;
+	font-size: 1.1rem;
+}
+
+.article table td, .article table th {
+	border: 1px solid;
+}
+
+.article code {
+	color: #ff9c4a;
+}
+
+.article p {
+	text-indent: 2em;
+}

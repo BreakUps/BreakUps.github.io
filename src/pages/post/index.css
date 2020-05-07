@@ -1,0 +1,13 @@
+.container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding-bottom: 2em;
+}
+
+.article-info-box {
+	padding-top: 1em;
+}
+
+.date {
+	color: #757575;
+}

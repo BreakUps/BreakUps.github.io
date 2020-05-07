@@ -1,0 +1,46 @@
+{
+  "name": "breakups.github.io",
+  "version": "1.0.0",
+  "description": "Button Chan's blog",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development webpack",
+    "build": "cross-env NODE_ENV=production webpack --progress",
+    "generate": "node scripts/generate.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BreakUps/BreakUps.github.io.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "Button Chan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BreakUps/BreakUps.github.io/issues"
+  },
+  "homepage": "https://github.com/BreakUps/BreakUps.github.io#readme",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
+    "showdown": "^1.9.1",
+    "whatwg-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-classes": "^7.9.5",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^3.5.3",
+    "html-webpack-plugin": "^4.2.1",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
