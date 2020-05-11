@@ -2,7 +2,7 @@
 
 `Array.prototype.sort`方法是[ecma](https://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.sort) 规范的一部分，以下是此规范的几处细节：
 
-### 1、稀疏数组的排序
+## 1、稀疏数组的排序
 
 > 稀疏数组：存在`undefined`元素或者空元素（empty hole）的数组。
 
@@ -22,7 +22,7 @@
 
 ###### <div style="display: flex; text-align: center; font-size: 1.2rem; line-height: 2"><span style="flex: 3; background-color: green;">*list3*</span><span style="flex: 1">`undefined`</span><span style="flex: 2; color: #fff; background-color: grey;">空元素</span></div>
 
-### 2、排序算法
+## 2、排序算法
 
 在es2019之前，规范没有明确排序所使用的算法，大部分js引擎使用的排序算法都采用了基于快速排序的改进算法。改进方案是对不同长度的数组使用对应的排序算法，记数组长度是L，长度阈值是`threshold`
 
