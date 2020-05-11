@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import showdown from 'showdown';
 import styles from './index.css';
+import loadingComponentWrapper from '../../../utils/loadingComponent';
 
-showdown.setFlavor('vanilla');
+showdown.setFlavor('github');
 const converter = new showdown.Converter({tables: true});
-
 class Article extends Component {
     constructor(props) {
         super(props);
@@ -17,4 +17,4 @@ class Article extends Component {
 
 }
 
-export default Article;
+export default loadingComponentWrapper(Article, props => !props.content);

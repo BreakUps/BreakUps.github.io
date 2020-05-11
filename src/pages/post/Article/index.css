@@ -11,6 +11,13 @@
 	color: #ff9c4a;
 }
 
-.article p {
+.article > p {
 	text-indent: 2em;
+	line-height: 1.5;
+}
+
+.article blockquote {
+	padding: 0 1em;
+    color: #6a737d;
+    border-left: .25em solid #dfe2e5;
 }

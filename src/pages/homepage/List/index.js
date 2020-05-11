@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PostItem from '../../../components/PostItem/index';
 import styles from './index.css';
+import loadingComponentWrapper from '../../../utils/loadingComponent';
 
 class List extends Component {
     constructor(props) {
@@ -15,4 +16,4 @@ class List extends Component {
 
 }
 
-export default List;
+export default loadingComponentWrapper(List, props => !props.list || props.list.length == 0);
