@@ -1,6 +1,7 @@
 .article {
 	font-family: KaiTi;
 	font-size: 1.1rem;
+	line-height: 1.5;
 }
 
 .article table td, .article table th {
