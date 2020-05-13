@@ -34,7 +34,7 @@ class Post extends Component {
                     <Header></Header>
                     <div className={styles.container}>
                         <aside className={styles['article-info-box']}>
-                            wrote at <time className={styles.date}>{date && dateFormat(new Date(date))}</time>
+                            {date ? <> wrote at <time className={styles.date}>{date && dateFormat(new Date(date))}</time></> : null}
                         </aside>
                         <Article content={content}></Article>
                     </div>
