@@ -1,6 +1,23 @@
-.canvas {
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: -1;
+.loading-box {
+	font-size: 1.5rem;
+}
+
+@keyframes loading {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+	
+}
+
+.ellipse {
+	display: inline-block;
+	color: transparent;
+	background-color: white;
+	animation-name: loading;
+	animation-duration: .8s;
+	animation-iteration-count: infinite;
+	animation-timing-function: steps(3, jump-start);
 }

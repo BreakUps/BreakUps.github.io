@@ -15,7 +15,10 @@ class Loading extends Component {
     }
 
     render() {
-        return 'loading...'
+        return <div className={styles['loading-box']}>
+            <span>...</span>
+            <span className={styles.ellipse}>...</span>
+            </div>
     }
 
 }
