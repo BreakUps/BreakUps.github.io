@@ -17,6 +17,8 @@ class Post extends Component {
 
     componentDidMount() {
         const { match: { params: { title } } } = this.props;
+        this.prevTitle = document.title;
+        document.title = `${document.title}-${title}`;
         fetch(`/raw/posts/${title}.md`).then(res => {
             const date = res.headers.get('last-modified');
             res.text().then(value => {
@@ -26,6 +28,10 @@ class Post extends Component {
                 })
             });
         })
+    }
+
+    componentWillUnmount() {
+        document.title = this.prevTitle;
     }
 
     render() {
