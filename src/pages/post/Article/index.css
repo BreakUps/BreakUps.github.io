@@ -23,3 +23,8 @@
     color: #6a737d;
     border-left: .25em solid #dfe2e5;
 }
+
+.article a {
+	color: #069;
+	text-decoration: none;
+}
