@@ -4,6 +4,11 @@
 	line-height: 1.5;
 }
 
+.article table {
+	width: 100%;
+	text-align: center;
+}
+
 .article table td, .article table th {
 	border: 1px solid;
 }
