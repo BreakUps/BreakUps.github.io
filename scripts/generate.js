@@ -17,6 +17,7 @@ fs.readdir(DIRPATH, function (err, files) {
             date: mtime
         };
     });
+    category.sort((a, b) => a < b ? -1 : 1);
     const fileDateMap = JSON.parse(fs.readFileSync(CATEGORYPATH, 'utf-8')).reduce((pre, cur) => {
         const { title, date } = cur;
         pre.set(title, Date.parse(date));
