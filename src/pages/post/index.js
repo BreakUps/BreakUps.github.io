@@ -3,7 +3,7 @@ import userInfoContext from '../../contexts/userInfo';
 import { fetch } from 'whatwg-fetch';
 import Header from '../../components/Header/index';
 import Article from './Article/index';
-import { dateFormat } from '../../utils/dateFormat';
+import { parsePostUrl } from '../../utils/postUrl';
 import styles from './index.css';
 
 class Post extends Component {
@@ -16,11 +16,10 @@ class Post extends Component {
 
 
     componentDidMount() {
-        const { match: { params: { title } } } = this.props;
+        const { match: { params: { postUrl } } } = this.props, { title, date } = parsePostUrl(postUrl);
         this.prevTitle = document.title;
         document.title = `${document.title}-${title}`;
         fetch(`/raw/posts/${title}.md`).then(res => {
-            const date = res.headers.get('last-modified');
             res.text().then(value => {
                 this.setState({
                     content: value,
@@ -40,7 +39,7 @@ class Post extends Component {
                     <Header></Header>
                     <div className={styles.container}>
                         <aside className={styles['article-info-box']}>
-                            {date ? <> wrote at <time className={styles.date}>{date && dateFormat(new Date(date))}</time></> : null}
+                            {date ? <> wrote at <time className={styles.date}>{date}</time></> : null}
                         </aside>
                         <Article content={content}></Article>
                     </div>

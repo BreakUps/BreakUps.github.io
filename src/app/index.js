@@ -10,7 +10,7 @@ class App extends Component {
         return <Router>
                 <Switch>
                     <Route path='/' exact component={HomePage}></Route>
-                    <Route path='/posts/:title' component={PostPage}></Route>
+                    <Route path='/posts/:postUrl' component={PostPage}></Route>
                 </Switch>
             </Router>
     }
