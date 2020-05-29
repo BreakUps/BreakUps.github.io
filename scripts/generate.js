@@ -5,9 +5,20 @@ const DIRPATH = 'raw/posts';
 const CATEGORYPATH = 'raw/category.json';
 const WEBPATH = 'posts';
 const WEBFILEPATH = 'index.html';
+
+function isSameDate(date1, date2) {
+    return date1.getDate() == date2.getDate() && date1.getMonth() == date2.getMonth() && date1.getFullYear() == date2.getFullYear();
+}
+
+function getPostUrl(title, date) {
+    return `${title}-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+}
+
+
 fs.readdir(DIRPATH, function (err, files) {
-    if (err)
+    if (err) {
         return console.log(`Unable to read directory contents${err}`);
+    }
     const category = files.map(file => {
         const {
             mtime
@@ -18,32 +29,55 @@ fs.readdir(DIRPATH, function (err, files) {
         };
     });
     category.sort((a, b) => a.date > b.date ? -1 : 1);
-    const fileDateMap = JSON.parse(fs.readFileSync(CATEGORYPATH, 'utf-8')).reduce((pre, cur) => {
-        const { title, date } = cur;
-        pre.set(title, Date.parse(date));
-        return pre;
-    }, new Map());
+    const fileDateMap = new Map();
+    try {
+        JSON.parse(fs.readFileSync(CATEGORYPATH, 'utf-8')).forEach(post => {
+            const { title, date } = post;
+            fileDateMap.set(title, new Date(date));
+        });
+    }
+    catch(e) {
+        
+    }
     
     fs.writeFile(CATEGORYPATH, JSON.stringify(category), (err) => {
-        if (err)
+        if(err) {
             console.log(err);
+            return;
+        }
         console.log(`${CATEGORYPATH} generated!`);
     });
     category.forEach(post => {
-        const { title } = post;
+        const { title, date } = post, newUrl = getPostUrl(title, date), newWebdirPath = `${WEBPATH}/${newUrl}`;
         const currentFileDate = fileDateMap.get(title);
+        fileDateMap.delete(title);
         if(currentFileDate) {
+            if(!isSameDate(currentFileDate, date)) {
+                const oldUrl = getPostUrl(title, currentFileDate);
+                fs.renameSync(`${WEBPATH}/${oldUrl}`, newWebdirPath);
+            }
             return;
-        } 
-        const webdirPath = `${WEBPATH}/${title}`;
-        fs.mkdir(webdirPath, err => {
+        }
+        fs.mkdir(newWebdirPath, err => {
             if(err)
                 console.log(err);
-            fs.copyFile(WEBFILEPATH, `${webdirPath}/index.html`, err => {
-                if(err)
+            fs.copyFile(WEBFILEPATH, `${newWebdirPath}/index.html`, err => {
+                if(err) {
                     console.log(err);
-                console.log(`${webdirPath} generated!`);
+                    return;
+                }
+                console.log(`${newWebdirPath} generated!`);
             })
+        });
+    });
+    for(const [title, date] of fileDateMap) {
+        const webDirPath = `${WEBPATH}/${getPostUrl(title, date)}`;
+        fs.rmdir(webDirPath, err => {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            console.log(`${webDirPath} removed!`);
         })
-    })
+    }
 });
