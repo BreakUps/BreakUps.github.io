@@ -31,8 +31,13 @@ const config = {
       },
       {
         test: /\.css$/,
+        exclude: /highlight\.js/,
         loader: "style-loader!css-loader?modules"
       },
+      {
+        test: /highlight\.js.*\.css$/,
+        loader: "style-loader!postcss-loader"
+      }
     ]
   }
 };
