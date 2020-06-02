@@ -13,7 +13,7 @@
 	border: 1px solid;
 }
 
-.article code {
+.article :not(pre) code {
 	font-family: sans-serif;
 	color: #ff9c4a;
 }
