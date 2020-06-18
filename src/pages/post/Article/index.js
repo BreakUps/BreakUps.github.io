@@ -41,7 +41,10 @@ class Article extends Component {
 
     render() {
         const { article } = this.state;
-        return <div dangerouslySetInnerHTML={{__html: article}} className={styles.article}></div>
+        return  <>
+                    <div dangerouslySetInnerHTML={{__html: article}} className={styles.article}></div>
+                    <a href="#top" className={styles['top-button']} onClick={console.log} title="回顶部">&gt;</a>
+                </>;
     }
 
 }

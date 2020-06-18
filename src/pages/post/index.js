@@ -36,6 +36,7 @@ class Post extends Component {
     render() {
         let { content, date } = this.state;
         return  <>
+                    <a id="top"></a>
                     <Header></Header>
                     <div className={styles.container}>
                         <aside className={styles['article-info-box']}>
