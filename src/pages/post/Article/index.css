@@ -1,10 +1,17 @@
-.top-button {
+.top-button-box {
 	position: fixed;
-	bottom: 1em;
-	right: 2em;
+	bottom: 2rem;
+	right: 2rem;
 	font-size: 2rem;
+	transform-origin: 0 0;
+	transform: rotate(-90deg);
+}
+
+.top-button {
+	display: inline-block;
 	width: 1.5em;
 	height: 1em;
+	font-size: 2rem;
 	line-height: .9;
 	text-align: center;
 	text-decoration: none;
@@ -12,16 +19,35 @@
 	color: #fff;
 	background-color: #666;
 	transform-origin: 0 0;
-	transform: rotate(-101deg) scale(1, 1.5);
+	transform: rotate(-11deg) scale(1, 1.5);
 	opacity: .5;
-	transition: opacity .1s ease-out, transform .2s ease-out;
+	transition: opacity .1s ease-out, background-color .1s ease-out, transform .2s ease-out;
 	will-change: transform;
 }
 
 .top-button:hover {
 	opacity: 1;
-	transform: rotate(-90deg) scale(1, 1.5);
+	background-color: #000;
+	transform: rotate(0) scale(1, 1.5);
 }
+
+.top-button-box::before {
+	position: absolute;
+    top: 0;
+    left: .5em;
+    content: '';
+    z-index: -1;
+    width: .06em;
+    height: 1em;
+    border-radius: 50% 0 0 50%;
+    box-shadow: -0.6em 0.3em 0.3em rgba(0,0,0,0.6);
+    transition: box-shadow .5s ease-out;
+}
+
+.top-button-box:hover {
+	font-size: 0;
+}
+
 
 
 .article {

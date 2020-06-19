@@ -28,6 +28,16 @@ class Article extends Component {
         };
     }
 
+    toTop(e) {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        e.preventDefault();
+    }
+
+
+
     componentDidMount() {
         marked(this.props.content, (err, html) => {
             if(err) {
@@ -43,7 +53,9 @@ class Article extends Component {
         const { article } = this.state;
         return  <>
                     <div dangerouslySetInnerHTML={{__html: article}} className={styles.article}></div>
-                    <a href="#top" className={styles['top-button']} onClick={console.log} title="回顶部">&gt;</a>
+                    <div className={styles['top-button-box']}>
+                        <a href="#top" className={styles['top-button']} onClick={this.toTop} title="回顶部">&gt;</a>
+                    </div>
                 </>;
     }
 
