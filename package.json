@@ -4,8 +4,8 @@
   "description": "Button Chan's blog",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack",
-    "build": "cross-env NODE_ENV=production webpack --progress",
+    "start": "cross-env  NODE_ENV=development webpack",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider NODE_ENV=production webpack --progress",
     "generate": "node scripts/generate.js"
   },
   "repository": {
