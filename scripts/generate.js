@@ -56,7 +56,7 @@ fs.readdir(DIRPATH, function (err, files) {
                 const oldUrl = getPostUrl(title, currentFileDate);
                 fs.renameSync(`${WEBPATH}/${oldUrl}`, newWebdirPath);
             }
-            return;
+            // return;
         }
         fs.mkdir(newWebdirPath, err => {
             if(err)
