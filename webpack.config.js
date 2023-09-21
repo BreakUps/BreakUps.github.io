@@ -1,10 +1,10 @@
 const path = require('path');
-
+const webpack = require('webpack');
 const NODE_ENV = process.env.NODE_ENV, isProduction = NODE_ENV === "production";
 const config = {
   entry: './src/main.js',
   output: {
-    path: path.resolve(__dirname) + '/js',
+    path: path.resolve(__dirname, './js'),
     filename: 'bundle.js'
   },
   optimization: {
@@ -39,7 +39,13 @@ const config = {
         loader: "style-loader!postcss-loader"
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require('./vendor-manifest.json')
+    })
+  ]
 };
 
 
