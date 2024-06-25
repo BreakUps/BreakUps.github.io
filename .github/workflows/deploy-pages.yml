@@ -27,9 +27,9 @@ jobs:
         yarn
         yarn build
     - name: Generate
-    - run: yarn generate
+      run: yarn generate
     - name: Package
-    - run: |
+      run: |
         mkdir _site
         mv ./js ./posts ./raw index.html icon.jpg ./_site/
     - name: Upload Artifact
