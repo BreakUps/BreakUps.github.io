@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const NODE_ENV = process.env.NODE_ENV, isProduction = NODE_ENV === "production";
 const config = {
   entry: './src/main.js',
@@ -44,6 +45,12 @@ const config = {
     new webpack.DllReferencePlugin({
       context: __dirname,
       manifest: require('./vendor-manifest.json')
+    }),
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      filename: '../index.html',
+      inject: 'head',
+      scriptLoading: 'defer',
     })
   ]
 };
