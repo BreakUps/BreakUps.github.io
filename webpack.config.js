@@ -6,7 +6,8 @@ const config = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './js'),
-    filename: 'bundle.js'
+    filename: 'bundle.[contenthash].js',
+    publicPath: '/js',
   },
   optimization: {
     minimize: isProduction,
