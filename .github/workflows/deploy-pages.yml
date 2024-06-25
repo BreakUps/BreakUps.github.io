@@ -28,15 +28,15 @@ jobs:
         yarn build
     - name: Generate
     - run: yarn generate
-    - name: package
+    - name: Package
     - run: |
         mkdir _site
         mv ./js ./posts ./raw index.html icon.jpg ./_site/
     - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          # upload entire directory
-          path: './_site'
+      uses: actions/upload-pages-artifact@v2
+      with:
+        # upload entire directory
+        path: './_site'
   deploy:
     permissions:
       contents: read
