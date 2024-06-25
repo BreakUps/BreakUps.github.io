@@ -47,6 +47,7 @@ fs.readdir(DIRPATH, function (err, files) {
         }
         console.log(`${CATEGORYPATH} generated!`);
     });
+    const { mtime: webFileMTime } = fs.statSync(WEBFILEPATH);
     category.forEach(post => {
         const { title, date } = post, newUrl = getPostUrl(title, date), newWebdirPath = `${WEBPATH}/${newUrl}`;
         const currentFileDate = fileDateMap.get(title);
@@ -61,6 +62,10 @@ fs.readdir(DIRPATH, function (err, files) {
         fs.mkdir(newWebdirPath, err => {
             if(err)
                 console.log(err);
+            if(fs.statSync(`${newWebdirPath}/index.html`)?.mtime === webFileMTime) {
+                // Already is latest 'index.html'
+                return;
+            }
             fs.copyFile(WEBFILEPATH, `${newWebdirPath}/index.html`, err => {
                 if(err) {
                     console.log(err);
