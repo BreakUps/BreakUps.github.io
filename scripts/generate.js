@@ -60,8 +60,10 @@ fs.readdir(DIRPATH, function (err, files) {
             // return;
         }
         fs.mkdir(newWebdirPath, err => {
-            if(err)
+            if(err.code !== 'EEXIST') {
                 console.log(err);
+                return;
+            }
             if(fs.statSync(`${newWebdirPath}/index.html`)?.mtime === webFileMTime) {
                 // Already is latest 'index.html'
                 return;
