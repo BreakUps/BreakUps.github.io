@@ -64,7 +64,8 @@ fs.readdir(DIRPATH, function (err, files) {
                 console.log(err);
                 return;
             }
-            if(fs.statSync(`${newWebdirPath}/index.html`)?.mtime === webFileMTime) {
+            const indexFilePath = `${newWebdirPath}/index.html`;
+            if(fs.existsSync(indexFilePath) && fs.statSync(indexFilePath).mtime === webFileMTime) {
                 // Already is latest 'index.html'
                 return;
             }
