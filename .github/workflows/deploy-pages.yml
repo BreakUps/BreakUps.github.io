@@ -38,6 +38,7 @@ jobs:
       with:
         # upload entire directory
         path: './_site'
+        name: 'github-pages'
   deploy:
     permissions:
       contents: read
