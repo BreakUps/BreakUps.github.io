@@ -34,7 +34,7 @@ jobs:
         mkdir _site
         mv ./js ./posts ./raw index.html icon.jpg ./_site/
     - name: Upload Artifact
-      uses: actions/upload-pages-artifact@v2
+      uses: actions/upload-pages-artifact@v4
       with:
         # upload entire directory
         path: './_site'
