@@ -34,11 +34,17 @@ const config = {
       {
         test: /\.css$/,
         exclude: /highlight\.js/,
-        loader: "style-loader!css-loader?modules"
+        use: [
+          { loader: 'style-loader'},
+          { loader: 'css-loader', options: { modules: true } }
+        ]
       },
       {
         test: /highlight\.js.*\.css$/,
-        loader: "style-loader!postcss-loader"
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'postcss-loader' }
+        ]
       }
     ]
   },
@@ -53,7 +59,13 @@ const config = {
       inject: 'head',
       scriptLoading: 'defer',
     })
-  ]
+  ],
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname)
+    },
+    port: 8080
+  }
 };
 
 
