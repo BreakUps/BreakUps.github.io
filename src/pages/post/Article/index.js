@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import marked from 'marked';
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
+import typescript from 'highlight.js/lib/languages/typescript';
 import  'highlight.js/styles/ocean.css';
 import styles from './index.css';
 import loadingComponentWrapper from '../../../utils/loadingComponent';
 
 hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('typescript', typescript);
 const options = {
     highlight: (code, lang, callback) => {
         if(!lang) {
