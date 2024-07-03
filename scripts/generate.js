@@ -60,7 +60,7 @@ fs.readdir(DIRPATH, function (err, files) {
             // return;
         }
         fs.mkdir(newWebdirPath, err => {
-            if(err.code !== 'EEXIST') {
+            if(err && err.code !== 'EEXIST') {
                 console.log(err);
                 return;
             }
