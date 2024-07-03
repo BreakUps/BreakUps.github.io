@@ -34,7 +34,7 @@ jobs:
         mkdir _site
         mv ./js ./posts ./raw index.html icon.jpg ./_site/
     - name: Upload Artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-pages-artifact@v3
       with:
         # upload entire directory
         path: './_site'
@@ -50,4 +50,4 @@ jobs:
       url: ${{steps.deployment.outputs.page_url}}
     steps:
     - name: Deploy to GitHub Pages
-      uses: actions/deploy-pages@v4
+      uses: actions/deploy-pages@v3
