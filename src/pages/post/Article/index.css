@@ -65,7 +65,7 @@
 	border: 1px solid;
 }
 
-.article :not(pre) code {
+.article :not(pre) > code {
 	font-family: sans-serif;
 	color: #ff9c4a;
 }
