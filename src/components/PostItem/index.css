@@ -1,7 +1,9 @@
 .container {
-	font-size: 1.5rem;
-	padding: .5em;
-	
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: .5em;
 }
 .container > a {
 	color: #069;
@@ -13,7 +15,7 @@
 }
 
 .date {
-	float: right;
+	white-space: nowrap;
 	margin-top: .25rem;
 	font-size: 1.2rem;
 	font-family: serif;
