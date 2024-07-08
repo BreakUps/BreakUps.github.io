@@ -5,9 +5,9 @@ const NODE_ENV = process.env.NODE_ENV, isProduction = NODE_ENV === "production";
 const config = {
   entry: './src/main.js',
   output: {
-    path: path.resolve(__dirname, './js'),
-    filename: 'bundle.[contenthash].js',
-    publicPath: '/js',
+    path: path.resolve(__dirname, './dist'),
+    filename: isProduction ? 'js/bundle.[contenthash].js' : 'js/bundle.js',
+    publicPath: '/'
   },
   optimization: {
     minimize: isProduction,
@@ -55,15 +55,22 @@ const config = {
     }),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-      filename: '../index.html',
       inject: 'head',
       scriptLoading: 'defer',
     })
   ],
   devServer: {
-    static: {
-      directory: path.resolve(__dirname)
-    },
+    static: [
+      {
+        directory: path.resolve(__dirname, './dist'),
+        publicPath: "/"
+      },
+      {
+        directory: path.resolve(__dirname, './raw'),
+        publicPath: "/raw",
+      }
+    ],
+    historyApiFallback: true,
     port: 8080
   }
 };

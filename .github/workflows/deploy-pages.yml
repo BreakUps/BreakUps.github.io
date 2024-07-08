@@ -32,7 +32,7 @@ jobs:
     - name: Package
       run: |
         mkdir _site
-        mv ./js ./posts ./raw index.html icon.jpg ./_site/
+        mv ./dist ./posts ./raw  ./_site/
     - name: Upload Artifact
       uses: actions/upload-pages-artifact@v2
       with:
