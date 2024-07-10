@@ -3,6 +3,10 @@ name: Build and deploy
 on:
   push:
     branches: [ "master" ]
+    paths: 
+    - dist/
+    - posts/ 
+    - raw/
   pull_request:
     branches: [ "master" ]
 
