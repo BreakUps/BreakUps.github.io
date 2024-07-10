@@ -6,8 +6,8 @@ module.exports = {
     vendor: ['react-dom', 'react', 'react-router']
   },
   output: {
-    path: path.resolve(__dirname, './js'),
-    filename: '[name].dll.js',
+    path: path.resolve(__dirname, './dist'),
+    filename: 'js/[name].dll.js',
     library: '[name]_library'
   },
   plugins: [
