@@ -4,17 +4,15 @@ on:
   push:
     branches: [ "master" ]
     paths: 
-    - "dist/"
-    - "posts/"
-    - "raw/"
-    - ".github/"
+    - "dist/**"
+    - "posts/**"
+    - "raw/**"
   pull_request:
     branches: [ "master" ]
     paths: 
-    - "dist/"
-    - "posts/"
-    - "raw/"
-    - ".github/"
+    - "dist/**"
+    - "posts/**"
+    - "raw/**"
 
 jobs:
   build:
