@@ -9,6 +9,10 @@ on:
     - "raw/"
   pull_request:
     branches: [ "master" ]
+    paths: 
+    - "dist/"
+    - "posts/"
+    - "raw/"
 
 jobs:
   build:
