@@ -5,7 +5,7 @@ on:
     branches: [ "master" ]
     paths: 
     - "dist/"
-    - "posts/"" 
+    - "posts/"
     - "raw/"
   pull_request:
     branches: [ "master" ]
