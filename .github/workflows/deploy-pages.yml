@@ -4,9 +4,9 @@ on:
   push:
     branches: [ "master" ]
     paths: 
-    - dist/
-    - posts/ 
-    - raw/
+    - "dist/"
+    - "posts/"" 
+    - "raw/"
   pull_request:
     branches: [ "master" ]
 
