@@ -7,12 +7,14 @@ on:
     - "dist/"
     - "posts/"
     - "raw/"
+    - ".github/"
   pull_request:
     branches: [ "master" ]
     paths: 
     - "dist/"
     - "posts/"
     - "raw/"
+    - ".github/"
 
 jobs:
   build:
