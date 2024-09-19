@@ -110,6 +110,8 @@ Typescript中`type`和`interface`都可以用来描述对象类型，但是它�
   
   ```
   
+  还有一个区别是，在继承的过程中出现重名属性时，如果重名的属性类型不兼容，extends继承会报错，但是交叉类型继承却不会提示。
   
+  ![interface-vs-type-duplicate-prop](/raw/assets/interface-vs-type-duplicate-prop.PNG)
   
   
