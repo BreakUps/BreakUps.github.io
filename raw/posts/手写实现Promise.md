@@ -6,57 +6,64 @@
 const STATUS_PENDING = 0;
 const STATUS_FULFILLED = 1;
 const STATUS_REJECTED = 2;
-const STATUS_RESOLVED = 3; // RESOLVED but not FULFILLED yet
+const STATUS_RESOLVED = 3; // RESOLVED but neither FULFILLED nor REJECTED yet
 
 class MyPromise {
     constructor(executor) {
         this._status = STATUS_PENDING;
         this._value = undefined;
         this._reason = undefined;
-        this._onFulfilledCallbacks =  [];
+        this._onFulfilledCallbacks = [];
         this._onRejectedCallbacks = [];
-        const resolve = (value) => {
-            if(this._status === STATUS_PENDING) {
-                this._status = STATUS_RESOLVED;
-                const fulfill = (v) => {
-                    if(this._status === STATUS_RESOLVED) {
-                        this._status = STATUS_FULFILLED;
-                        this._value = v;
-                        setTimeout(() => {
-                            this._onFulfilledCallbacks.forEach((callback) => {
-                                callback(v)
-                            });
-                        }, 0);
-                    }
+        const _fulfill = (v) => {
+            this._status = STATUS_FULFILLED;
+            this._value = v;
+            setTimeout(() => {
+                this._onFulfilledCallbacks.forEach((callback) => {
+                    callback(v)
+                });
+            }, 0);
+        }
+
+        const _resolve = (value) => {
+            if ((typeof value?.then) === 'function') {
+                try {
+                    value.then(_resolve, _reject);
+                } catch (err) {
+                    _reject(err);
                 }
-                if((typeof value?.then) === 'function') {
-                    try {
-                        value.then(fulfill, reject);
-                    } catch(err) {
-                        reject(err);
-                    }
-                } else {
-                    fulfill(value);
-                }
+            } else {
+                _fulfill(value);
             }
         }
 
-        const reject = (reason) => {
-            if(this._status === STATUS_PENDING || this._status === STATUS_RESOLVED) {
-                this._status = STATUS_REJECTED;
-                this._reason = reason;
-                setTimeout(() => {
-                    this._onRejectedCallbacks.forEach((callback) => {
-                        callback(reason);
-                    })
-                }, 0);
-                
+        const resolve = (value) => {
+            if (this._status === STATUS_PENDING) {
+                this._status = STATUS_RESOLVED;
+                _resolve(value);
             }
         }
-        try{
+
+        const _reject = (reason) => {
+            this._status = STATUS_REJECTED;
+            this._reason = reason;
+            setTimeout(() => {
+                this._onRejectedCallbacks.forEach((callback) => {
+                    callback(reason);
+                })
+            }, 0);
+        }
+
+        const reject = (reason) => {
+            if (this._status === STATUS_PENDING) {
+                _reject(reason);
+            }
+        }
+
+        try {
             executor(resolve, reject);
-        } 
-        catch(err) {
+        }
+        catch (err) {
             reject(err);
         }
     }
@@ -64,41 +71,41 @@ class MyPromise {
     then(onFulfilled, onRejected) {
         const p = new MyPromise((resolve, reject) => {
             const callback = (fn, result) => {
-                try{
+                try {
                     const returnValue = fn(result);
-                    if(returnValue === p) {
+                    if (returnValue === p) {
                         throw TypeError("`onFulfilled` returns a value that === p");
                     }
                     resolve(returnValue);
-                } catch(err) {
+                } catch (err) {
                     reject(err);
                 }
             }
-            if(this._status === STATUS_PENDING || this._status === STATUS_RESOLVED) {
-                if((typeof onFulfilled) === 'function') {
+            if (this._status === STATUS_PENDING || this._status === STATUS_RESOLVED) {
+                if ((typeof onFulfilled) === 'function') {
                     this._onFulfilledCallbacks.push(callback.bind(null, onFulfilled));
                 } else {
                     this._onFulfilledCallbacks.push((value) => {
                         resolve(value);
                     })
                 }
-                if((typeof onRejected) === 'function') {
+                if ((typeof onRejected) === 'function') {
                     this._onRejectedCallbacks.push(callback.bind(null, onRejected));
                 } else {
                     this._onRejectedCallbacks.push((reason) => {
                         reject(reason);
                     })
                 }
-            } else if(this._status === STATUS_FULFILLED) {
-                if((typeof onFulfilled) === 'function') {
+            } else if (this._status === STATUS_FULFILLED) {
+                if ((typeof onFulfilled) === 'function') {
                     setTimeout(() => {
                         callback(onFulfilled, this._value);
                     }, 0);
                 } else {
                     resolve(this._value);
                 }
-            } else if(this._status === STATUS_REJECTED) {
-                if((typeof onRejected) === 'function') {
+            } else if (this._status === STATUS_REJECTED) {
+                if ((typeof onRejected) === 'function') {
                     setTimeout(() => {
                         callback(onRejected, this._reason);
                     }, 0);
@@ -115,7 +122,7 @@ class MyPromise {
     }
 
     static resolve(value) {
-        if(value instanceof MyPromise) {
+        if (value instanceof MyPromise) {
             return value;
         }
         return new MyPromise((resolve) => {
@@ -129,5 +136,6 @@ class MyPromise {
         })
     }
 }
+
 ```
 
